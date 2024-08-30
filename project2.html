@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+
+        .board{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .row{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-family:cursive ;
+            width: 150px;
+            color:rgb(76, 75, 75);
+            height: 150px;
+            transition: all .5s ease;
+            background-color: white;
+            box-shadow: 1px 1px 10px 7px rgba(68, 26, 251, 0.2),-1px -1px 10px rgba(34, 26, 255, 0.2);
+            border-radius: 10px;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        h1{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div class="board">
+
+        <div class="row">
+            <div id="0" onclick="playTurn(this)" class="box"></div>
+            <div id="3" onclick="playTurn(this)" class="box"></div>
+            <div id="6" onclick="playTurn(this)" class="box"></div>
+        </div>
+
+        <div class="row">
+            <div id="1" onclick="playTurn(this)" class="box"></div>
+            <div id="4" onclick="playTurn(this)" class="box"></div>
+            <div id="7" onclick="playTurn(this)" class="box"></div>
+        </div>
+
+        <div class="row">
+           <div id="2" onclick="playTurn(this)" class="box"></div>
+           <div id="5" onclick="playTurn(this)" class="box"></div>
+           <div id="8" onclick="playTurn(this)" class="box"></div>
+        </div>
+
+    </div>
+
+    <script>
+        let turn = "X"
+        
+        let arr = new Array(9).fill(null)
+        console.log(arr);
+        
+        function playTurn(a){
+            a.innerText=turn
+            arr[a["id"]]=turn
+            console.log(arr);
+            checkWinner();
+
+            if(turn=="X"){
+                turn="O"
+            }else{
+                turn="X"
+            }
+        }
+        function checkWinner() {
+            if (
+                arr[0]!=null && arr[0]==arr[1] && arr[1]==arr[2] ||
+                arr[3]!=null && arr[3]==arr[4] && arr[4]==arr[5] ||
+                arr[6]!=null && arr[6]==arr[7] && arr[7]==arr[8] ||
+                arr[0]!=null && arr[0]==arr[3] && arr[3]==arr[6] ||
+                arr[1]!=null && arr[1]==arr[4] && arr[4]==arr[7] ||
+                arr[2]!=null && arr[2]==arr[5] && arr[5]==arr[8] ||
+                arr[0]!=null && arr[0]==arr[4] && arr[4]==arr[8] ||
+                arr[2]!=null && arr[2]==arr[4] && arr[4]==arr[6]){
+                alert(`Winner is ${turn}`)
+            }
+            else{
+
+            }
+        }
+    </script>
+</body>
+</html>
